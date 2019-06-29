@@ -5,12 +5,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script>
         angular.module("phoneBook", []);
-        angula.module("phoneBook").controller("phoneBookCtrl", function ($scope) {
-
+        angular.module("phoneBook").controller("phoneBookCtrl", function ($scope) {
+            $scope.app = "Phone Book";
         });
     </script>
 </head>
-<body>
-
+<body ng-controller="phoneBookCtrl">
+    <div>
+        <h4 ng-bind="app"></h4>
+    </div>
 </body>
 </html>
