@@ -22,13 +22,27 @@
         angular.module("phoneBook", []);
         angular.module("phoneBook").controller("phoneBookCtrl", function ($scope) {
             $scope.app = "Phone Book";
+            $scope.contatos = [
+                {nome: "Matheus", telefone: "999999999"},
+                {nome: "Luiz", telefone: "999999999"},
+                {nome: "Binotto", telefone: "999999999"}
+            ];
         });
     </script>
 </head>
 <body ng-controller="phoneBookCtrl">
     <div class="jumbotron">
-        <h4 ng-bind="app"></h4>
         <h4>{{app}}</h4>
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+            </tr>
+            <tr ng-repeat="contato in contatos">
+                <td>{{contato.nome}}</td>
+                <td>{{contato.telefone}}</td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>
