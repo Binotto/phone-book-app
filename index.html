@@ -32,7 +32,7 @@
                 {nome: "Binotto", telefone: "999999999"}
             ];
             $scope.addContact = function (contato) {
-                $scope.contatos.push(contato);
+                $scope.contatos.push(angular.copy(contato));
             };
         });
     </script>
