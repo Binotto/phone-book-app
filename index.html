@@ -33,6 +33,7 @@
             ];
             $scope.addContact = function (contato) {
                 $scope.contatos.push(angular.copy(contato));
+                delete $scope.contato
             };
         });
     </script>
