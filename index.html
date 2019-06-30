@@ -66,8 +66,7 @@
 <body ng-controller="phoneBookCtrl">
     <div class="jumbotron">
         <h3>{{app}}</h3>
-        {{contatos}}
-        <table class="table">
+        <table ng-show="contatos.length > 0" class="table">
             <tr>
                 <th></th>
                 <th>Nome</th>
