@@ -1,48 +1,54 @@
 <html ng-app="phoneBook">
+
 <head>
-	<title>Phone Book</title>
+    <title>Phone Book</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Quicksand" type="text/css">
     <style>
-            *{
-                font-family: 'Audiowide', sans-serif;
-            }
-            .jumbotron {
-                width: 400px;
-                text-align: center;
-                margin-top: 20px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .table {
-                margin-top: 20px;
-            }
-            .form-control {
-                margin-bottom: 5px;
-            }
-            .selecionado{
-                background:yellow;
-            }
-            .negrito{
-                font-weight: bold;
-            }
-        </style>
+        * {
+            font-family: 'Audiowide', sans-serif;
+        }
+
+        .jumbotron {
+            width: 400px;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .table {
+            margin-top: 20px;
+        }
+
+        .form-control {
+            margin-bottom: 5px;
+        }
+
+        .selecionado {
+            background: yellow;
+        }
+
+        .negrito {
+            font-weight: bold;
+        }
+    </style>
     <script>
         angular.module("phoneBook", []);
         angular.module("phoneBook").controller("phoneBookCtrl", function ($scope) {
             $scope.app = "Phone Book";
             $scope.contatos = [
-                {nome: "Matheus", telefone: "999999999", cor: "green"},
-                {nome: "Luiz", telefone: "999999999", cor: "green"},
-                {nome: "Binotto", telefone: "999999999", cor: "green"}
+                { nome: "Matheus", telefone: "999999999", cor: "green" },
+                { nome: "Luiz", telefone: "999999999", cor: "green" },
+                { nome: "Binotto", telefone: "999999999", cor: "green" }
             ];
             $scope.operadoras = [
-                {nome: "Oi", codigo: 14, categoria: "Celular"},
-                {nome: "Vivo", codigo: 15, categoria: "Celular"},
-                {nome: "Tim", codigo: 41, categoria: "Celular"},
-                {nome: "GVT", codigo: 25, categoria: "Fixo"},
-                {nome: "Copel", codigo: 21, categoria: "Fixo"},
+                { nome: "Oi", codigo: 14, categoria: "Celular" },
+                { nome: "Vivo", codigo: 15, categoria: "Celular" },
+                { nome: "Tim", codigo: 41, categoria: "Celular" },
+                { nome: "GVT", codigo: 25, categoria: "Fixo" },
+                { nome: "Copel", codigo: 21, categoria: "Fixo" },
 
             ];
             $scope.addContact = function (contato) {
@@ -50,11 +56,11 @@
                 delete $scope.contato
             };
             $scope.deleteContacts = function (contatos) {
-                $scope.contatos =  $scope.contatos.filter(function (contato) {
-                    if(!contato.selecionado) return contato;
+                $scope.contatos = $scope.contatos.filter(function (contato) {
+                    if (!contato.selecionado) return contato;
                 });
             };
-            $scope.isContatoSelecionado = function (contatos){
+            $scope.isContatoSelecionado = function (contatos) {
                 return contatos.some(function (contato) {
                     return contato.selecionado;
                 });
@@ -63,6 +69,7 @@
         });
     </script>
 </head>
+
 <body ng-controller="phoneBookCtrl">
     <div class="jumbotron">
         <h3>{{app}}</h3>
@@ -74,22 +81,31 @@
                 <th>Operadora</th>
                 <th></th>
             </tr>
-            <tr ng-class="{'selecionado negrito': contato.selecionado, negrito: contato.selecionado}" ng-repeat="contato in contatos">
-                <td><input type="checkbox" ng-model="contato.selecionado"/></td>
+            <tr ng-class="{'selecionado negrito': contato.selecionado, negrito: contato.selecionado}"
+                ng-repeat="contato in contatos">
+                <td><input type="checkbox" ng-model="contato.selecionado" /></td>
                 <td>{{contato.nome}}</td>
                 <td>{{contato.telefone}}</td>
                 <td>{{contato.operadora.nome}}</td>
-                <td><div style="width: 20px; height: 20px; background-color: green;" ng-style="{'background-color': contato.cor}"></div></td>
+                <td>
+                    <div style="width: 20px; height: 20px; background-color: green;"
+                        ng-style="{'background-color': contato.cor}"></div>
+                </td>
             </tr>
         </table>
-        <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome"/>
-        <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone"/>
-        <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome for operadora in operadoras">
-            <option value="">Selecione uma Operadora</option>
-        </select>
-        <button class= "btn btn-primary btn-block" ng-click="addContact(contato)" ng-disable="!contato.nome || !contato.telefone || !contato.operadora">Add contact</button>
-        <button class= "btn btn-danger btn-block" ng-click="deleteContacts(contatos)" ng-if="isContatoSelecionado(contatos)">Delete contacts</button>
+        <form name="contatoForm">
+            <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" ng-require="true" />
+            <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" />
+            <select class="form-control" ng-model="contato.operadora"
+                ng-options="operadora.nome for operadora in operadoras">
+                <option value="">Selecione uma Operadora</option>
+            </select>
+        </form>
+        <button class="btn btn-primary btn-block" ng-click="addContact(contato)">Add contact</button>
+        <button class="btn btn-danger btn-block" ng-click="deleteContacts(contatos)"
+            ng-if="isContatoSelecionado(contatos)">Delete contacts</button>
     </div>
     <div ng-include="'footer.html'"></div>
 </body>
+
 </html>
