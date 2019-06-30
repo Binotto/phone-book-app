@@ -50,10 +50,16 @@
                 delete $scope.contato
             };
             $scope.deleteContacts = function (contatos) {
-                $scope.contatos     =  $scope.contatos.filter(function (contato) {
+                $scope.contatos =  $scope.contatos.filter(function (contato) {
                     if(!contato.selecionado) return contato;
                 });
             };
+            $scope.isContatoSelecionado = function (contatos){
+                return contatos.some(function (contato) {
+                    return contato.selecionado;
+                });
+                console.log(isContatoSelecionado)
+            }
         });
     </script>
 </head>
@@ -81,7 +87,7 @@
             <option value="">Selecione uma Operadora</option>
         </select>
         <button class= "btn btn-primary btn-block" ng-click="addContact(contato)" ng-disable="!contato.nome || !contato.telefone">Add contact</button>
-        <button class= "btn btn-danger btn-block" ng-click="deleteContacts(contatos)">Delete contacts</button>
+        <button class= "btn btn-danger btn-block" ng-click="deleteContacts(contatos)" ng-disabled="isContatoSelecionado(contatos)">Delete contacts</button>
     </div>
 </body>
 </html>
