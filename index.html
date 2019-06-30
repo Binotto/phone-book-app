@@ -49,8 +49,11 @@
                 $scope.contatos.push(angular.copy(contato));
                 delete $scope.contato
             };
-            $scope.classe1 = "selecionado";
-            $scope.classe2 = "negrito";
+            $scope.deleteContacts = function (contatos) {
+                $scope.contatos     =  $scope.contatos.filter(function (contato) {
+                    if(!contato.selecionado) return contato;
+                });
+            };
         });
     </script>
 </head>
@@ -78,6 +81,7 @@
             <option value="">Selecione uma Operadora</option>
         </select>
         <button class= "btn btn-primary btn-block" ng-click="addContact(contato)" ng-disable="!contato.nome || !contato.telefone">Add contact</button>
+        <button class= "btn btn-danger btn-block" ng-click="deleteContacts(contatos)">Delete contacts</button>
     </div>
 </body>
 </html>
