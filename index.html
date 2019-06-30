@@ -24,6 +24,9 @@
             .selecionado{
                 background:yellow;
             }
+            .negrito{
+                font-weight: bold;
+            }
         </style>
     <script>
         angular.module("phoneBook", []);
@@ -46,7 +49,8 @@
                 $scope.contatos.push(angular.copy(contato));
                 delete $scope.contato
             };
-            $scope.classe = "selecionado";
+            $scope.classe1 = "selecionado";
+            $scope.classe2 = "negrito";
         });
     </script>
 </head>
@@ -59,7 +63,7 @@
                 <th>Telefone</th>
                 <th>Operadora</th>
             </tr>
-            <tr ng-class="classe" ng-repeat="contato in contatos">
+            <tr ng-class="[classe1, classe2]" ng-repeat="contato in contatos">
                 <td>{{contato.nome}}</td>
                 <td>{{contato.telefone}}</td>
                 <td>{{contato.operadora.nome}}</td>
