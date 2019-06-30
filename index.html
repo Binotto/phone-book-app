@@ -1,6 +1,7 @@
 <html ng-app="phoneBook">
 
 <head>
+    <meta charset="UTF-8">
     <title>Phone Book</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -93,8 +94,11 @@
                 </td>
             </tr>
         </table>
+        <hr/>
+        É válido: {{contatoForm.$valid}}<br/>
+        É invalido: {{contatoForm.$invalid}}<br/>
         <form name="contatoForm">
-            <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" ng-require="true" />
+            <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" ng-required="true" />
             <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" />
             <select class="form-control" ng-model="contato.operadora"
                 ng-options="operadora.nome for operadora in operadoras">
