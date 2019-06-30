@@ -99,7 +99,7 @@
         É invalido: {{contatoForm.$invalid}}<br/>
         <form name="contatoForm">
             <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" ng-required="true" />
-            <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" />
+            <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" ng-required="true" />
             <select class="form-control" ng-model="contato.operadora"
                 ng-options="operadora.nome for operadora in operadoras">
                 <option value="">Selecione uma Operadora</option>
