@@ -51,16 +51,18 @@
             <tr>
                 <th>Nome</th>
                 <th>Telefone</th>
+                <th>Operadora</th>
             </tr>
             <tr ng-repeat="contato in contatos">
                 <td>{{contato.nome}}</td>
                 <td>{{contato.telefone}}</td>
+                <td>{{contato.operadora.nome}}</td>
             </tr>
         </table>
         <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome"/>
         <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone"/>
         <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome for operadora in operadoras">
-
+            <option value="">Selecione uma Operadora</option>
         </select>
         <button class= "btn btn-primary btn-block" ng-click="addContact(contato)" ng-disable="!contato.nome || !contato.telefone">Add contact</button>
     </div>
