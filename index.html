@@ -33,9 +33,9 @@
         angular.module("phoneBook").controller("phoneBookCtrl", function ($scope) {
             $scope.app = "Phone Book";
             $scope.contatos = [
-                {nome: "Matheus", telefone: "999999999"},
-                {nome: "Luiz", telefone: "999999999"},
-                {nome: "Binotto", telefone: "999999999"}
+                {nome: "Matheus", telefone: "999999999", cor: "green"},
+                {nome: "Luiz", telefone: "999999999", cor: "green"},
+                {nome: "Binotto", telefone: "999999999", cor: "green"}
             ];
             $scope.operadoras = [
                 {nome: "Oi", codigo: 14, categoria: "Celular"},
@@ -73,12 +73,14 @@
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>Operadora</th>
+                <th></th>
             </tr>
             <tr ng-class="{'selecionado negrito': contato.selecionado, negrito: contato.selecionado}" ng-repeat="contato in contatos">
                 <td><input type="checkbox" ng-model="contato.selecionado"/></td>
                 <td>{{contato.nome}}</td>
                 <td>{{contato.telefone}}</td>
                 <td>{{contato.operadora.nome}}</td>
+                <td><div style="width: 50px; height: 50px; background-color: green;" ng-style="{'background-color: contato.cor'}"></div></td>
             </tr>
         </table>
         <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome"/>
