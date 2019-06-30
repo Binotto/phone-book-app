@@ -87,7 +87,7 @@
         <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome for operadora in operadoras">
             <option value="">Selecione uma Operadora</option>
         </select>
-        <button class= "btn btn-primary btn-block" ng-click="addContact(contato)" ng-disable="!contato.nome || !contato.telefone">Add contact</button>
+        <button class= "btn btn-primary btn-block" ng-click="addContact(contato)" ng-disable="!contato.nome || !contato.telefone || !contato.operadora">Add contact</button>
         <button class= "btn btn-danger btn-block" ng-click="deleteContacts(contatos)" ng-if="isContatoSelecionado(contatos)">Delete contacts</button>
     </div>
     <div ng-include="'footer.html'"></div>
