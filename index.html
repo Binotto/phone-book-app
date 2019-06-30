@@ -97,7 +97,7 @@
         </table>
         <hr/>
         <form name="contatoForm">
-            <input class="form-control" type="text" ng-model="contato.nome" name="nome" placeholder="Nome" ng-required="true" />
+            <input class="form-control" type="text" ng-model="contato.nome" name="nome" placeholder="Nome" ng-required="true" ng-minlength="10"/>
             <input class="form-control" type="text" ng-model="contato.telefone" name="telefone" placeholder="Telefone" ng-required="true"/>
             <select class="form-control" ng-model="contato.operadora"
                 ng-options="operadora.nome for operadora in operadoras">
