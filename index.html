@@ -38,10 +38,10 @@
     <script src="http://code.angularjs.org/1.3.0-beta.8/angular-messages.js"></script>
     <script>
         angular.module("phoneBook", ["ngMessages"]);
-        angular.module("phoneBook").controller("phoneBookCtrl", function ($scope, $filter) {
+        angular.module("phoneBook").controller("phoneBookCtrl", function ($scope, uppercasefilter) {
             $scope.app = "Phone Book";
             $scope.contatos = [
-                { nome: $filter('uppercase')("Matheus"), telefone: "999999999", data: new Date(), cor: "green" },
+                { nome: uppercasefilter("Matheus"), telefone: "999999999", data: new Date(), cor: "green" },
                 { nome: "Luiz", telefone: "999999999", data: new Date(),cor: "green" },
                 { nome: "Binotto", telefone: "999999999", data: new Date(), cor: "green" }
             ];
