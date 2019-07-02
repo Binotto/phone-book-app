@@ -11,7 +11,7 @@
         }
 
         .jumbotron {
-            width: 400px;
+            width: 600px;
             text-align: center;
             margin-top: 20px;
             margin-left: auto;
@@ -41,9 +41,9 @@
         angular.module("phoneBook").controller("phoneBookCtrl", function ($scope) {
             $scope.app = "Phone Book";
             $scope.contatos = [
-                { nome: "Matheus", telefone: "999999999", cor: "green" },
-                { nome: "Luiz", telefone: "999999999", cor: "green" },
-                { nome: "Binotto", telefone: "999999999", cor: "green" }
+                { nome: "Matheus", telefone: "999999999", data: new Date(), cor: "green" },
+                { nome: "Luiz", telefone: "999999999", data: new Date(),cor: "green" },
+                { nome: "Binotto", telefone: "999999999", data: new Date(), cor: "green" }
             ];
             $scope.operadoras = [
                 { nome: "Oi", codigo: 14, categoria: "Celular" },
@@ -82,6 +82,7 @@
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>Operadora</th>
+                <th>Data</th>
                 <th></th>
             </tr>
             <tr ng-class="{'selecionado negrito': contato.selecionado, negrito: contato.selecionado}"
@@ -90,6 +91,7 @@
                 <td>{{contato.nome | uppercase}}</td>
                 <td>{{contato.telefone}}</td>
                 <td>{{contato.operadora.nome | lowercase}}</td>
+                <td>{{contato.data | date:'dd/MM/yyyy HH:mm'}}</td>
                 <td>
                     <div style="width: 20px; height: 20px; background-color: green;"
                         ng-style="{'background-color': contato.cor}"></div>
