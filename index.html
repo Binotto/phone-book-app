@@ -38,25 +38,32 @@
     <script src="http://code.angularjs.org/1.3.0-beta.8/angular-messages.js"></script>
     <script>
         angular.module("phoneBook", ["ngMessages"]);
-        angular.module("phoneBook").controller("phoneBookCtrl", function ($scope, uppercasefilter) {
+        angular.module("phoneBook").controller("phoneBookCtrl", function ($scope, $http) {
             $scope.app = "Phone Book";
-            $scope.contatos = [
-                { nome: uppercasefilter("Matheus"), telefone: "999999999", data: new Date(), cor: "green" },
-                { nome: "Luiz", telefone: "999999999", data: new Date(),cor: "green" },
-                { nome: "Binotto", telefone: "999999999", data: new Date(), cor: "green" }
-            ];
-            $scope.operadoras = [
-                { nome: "Oi", codigo: 14, categoria: "Celular", preco: 2},
-                { nome: "Vivo", codigo: 15, categoria: "Celular", preco: 3 },
-                { nome: "Tim", codigo: 41, categoria: "Celular", preco: 4 },
-                { nome: "GVT", codigo: 25, categoria: "Fixo", preco: 5 },
-                { nome: "Copel", codigo: 21, categoria: "Fixo", preco: 6 },
+            $scope.contatos = [];
+            $scope.operadoras = [];
+            var carregarContatos = function () {
+                $http.get("http://localhost:3412/contatos").sucess(function (data, status) {
+                    $scope.contatos = data;
+                });    
+            };
+            var carregarOperadoras = function(){
+                $http.get("http://localhost:3412/operadoras").sucess(function (data, status) {
+                    $scope.operadoras = data;
+                }); 
+            }
 
-            ];
             $scope.addContact = function (contato) {
                 $scope.contatos.push(angular.copy(contato));
-                delete $scope.contato
-                $scope.contatoForm.$setPristine();
+                $http.post("http://localhost:3412/contatos").sucess(function (data, status) {
+                    delete $scope.contato
+                    $scope.contatoForm.$setPristine();
+                    //$scope.contatos.push(angular.copy(contatos));
+                    //$scope.contatos.push(data);
+                    carregarContatos();
+                }).error(function(data, status){
+                    $scope.message = "Aconteceu um probema!" + data;
+                });
             };
             $scope.deleteContacts = function (contatos) {
                 $scope.contatos = $scope.contatos.filter(function (contato) {
@@ -73,6 +80,9 @@
                 $scope.criterioDeOrdenacao = campo;
                 $scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;
             };
+
+            carregarContatos();
+            carregarOperadoras();
         });
     </script>
 </head>
@@ -128,7 +138,6 @@
             contact</button>
         <button class="btn btn-danger btn-block" ng-click="deleteContacts(contatos)"
             ng-if="isContatoSelecionado(contatos)">Delete contacts</button>
-            {{100.96 | number:1}}
         </div>
 
     <div ng-include="'footer.html'"></div>
